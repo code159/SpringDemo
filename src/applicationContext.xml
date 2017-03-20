@@ -7,6 +7,10 @@
 	<!-- 使用XML形式开启自动扫描 -->
 	<context:component-scan base-package="soundsystem"/>
 	
+	<!-- 配置Bean：
+		class:bean的全类名，通过反射的方式在IOC容器中创建bean
+		id：容器中的id值，必须是唯一的
+	 -->
 	<bean id="HelloWorld" class="org.lyb.helloworld.HelloWorld">
 		<property name="name" value="liyubin"></property>
 	</bean>

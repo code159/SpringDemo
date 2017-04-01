@@ -5,13 +5,48 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<!-- 使用XML形式开启自动扫描 -->
-	<context:component-scan base-package="soundsystem"/>
+	<!-- <context:component-scan base-package="soundsystem"/> -->
 	
 	<!-- 配置Bean：
 		class:bean的全类名，通过反射的方式在IOC容器中创建bean
 		id：容器中的id值，必须是唯一的
 	 -->
+	 <!-- 属性注入（即通过setter方法注入Bean的属性值或依赖的对象）,最常用 -->
 	<bean id="HelloWorld" class="org.lyb.helloworld.HelloWorld">
 		<property name="name" value="liyubin"></property>
+	</bean>
+	<!-- 构造方法注入 ，保证了Bean实例在实例化后即可使用,由index来对应参数个数不同、type对应参数种类不同的重载情况-->
+	<bean id="car" class="org.lyb.helloworld.Car">
+		<constructor-arg value="Audi" index="0"></constructor-arg>
+		<constructor-arg value="BigCorp" index="1"></constructor-arg>
+		<constructor-arg value="30000" index="2"></constructor-arg>
+	</bean>
+	<bean id="car2" class="org.lyb.helloworld.Car">
+		<constructor-arg value="Benz" type="java.lang.String"></constructor-arg>
+		<!-- 
+		<constructor-arg value="BigCorp" type="java.lang.String"></constructor-arg> 
+		-->
+		<!-- 如果字面值包含特殊字符，可以使用<![CDATA[]]>包裹起来 -->
+		<constructor-arg type="java.lang.String">
+			<value><![CDATA[[Big^Corp]]]></value>
+		</constructor-arg>
+		<!-- 
+		<constructor-arg value="200" type="int"></constructor-arg> 
+		-->
+		<!-- 另一种写法 -->
+		<constructor-arg type="int">
+			<value>200</value>
+		</constructor-arg>
+	</bean>
+	<bean id="person" class="org.lyb.helloworld.Person">
+		<property name="name" value="liyubin"></property>
+		<property name="age" value="26"></property>
+		<!-- 可以使用property的ref属性来建立bean间的引用关系 -->
+		<!-- 
+		<property name="car" ref="car2"></property> 
+		-->
+		<property name="car">
+			<ref bean="car2"></ref>
+		</property>
 	</bean>
 </beans>

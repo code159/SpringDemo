@@ -1,4 +1,4 @@
-package org.lyb.helloworld;
+package org.lyb.helloworld.xml;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -29,7 +29,7 @@ public class Main {
 		Car car2=(Car)ctx.getBean("car2");
 		System.out.println(car2);
 		
-		Person person=ctx.getBean(org.lyb.helloworld.Person.class);
+		Person person=ctx.getBean(org.lyb.helloworld.xml.Person.class);
 		System.out.println(person);
 	}
 }

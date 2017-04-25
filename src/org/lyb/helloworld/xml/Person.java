@@ -1,4 +1,4 @@
-package org.lyb.helloworld;
+package org.lyb.helloworld.xml;
 
 public class Person {
 	private String name;

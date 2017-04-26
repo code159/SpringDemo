@@ -1,4 +1,4 @@
-package soundsystem;
+package soundsystem.auto;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package soundsystem;
+package soundsystem.auto;
 
 import org.springframework.stereotype.Component;
 //CD实现类。使用Component注解，告知Spring要为这个类创建bean

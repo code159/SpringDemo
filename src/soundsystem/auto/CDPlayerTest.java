@@ -1,4 +1,4 @@
-package soundsystem;
+package soundsystem.auto;
 
 import static org.junit.Assert.assertNotNull;
 

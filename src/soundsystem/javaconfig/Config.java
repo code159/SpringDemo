@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 
 @Configuration
-//导入其他JavaConfig
+//瀵煎叆鍏朵粬JavaConfig
 @Import({CDConfig.class,CDPlayerConfig.class})
 public class Config {
 

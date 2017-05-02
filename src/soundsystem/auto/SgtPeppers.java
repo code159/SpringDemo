@@ -1,7 +1,7 @@
 package soundsystem.auto;
 
 import org.springframework.stereotype.Component;
-//CD实现类。使用Component注解，告知Spring要为这个类创建bean
+//CD瀹炵幇绫汇�備娇鐢–omponent娉ㄨВ锛屽憡鐭pring瑕佷负杩欎釜绫诲垱寤篵ean
 @Component
 public class SgtPeppers implements CompactDisc {
 	private String title="Sgt Peppers";

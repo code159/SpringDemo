@@ -1,6 +1,6 @@
 package soundsystem.auto;
 
-//CD½Ó¿Ú
+//CDæ¥å£
 public interface CompactDisc {
 	void play();
 }

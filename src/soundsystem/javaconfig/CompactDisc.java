@@ -1,6 +1,6 @@
 package soundsystem.javaconfig;
 
-//CD½Ó¿Ú
+//CDæ¥å£
 public interface CompactDisc {
 	void play();
 }

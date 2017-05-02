@@ -3,8 +3,8 @@ package soundsystem.auto;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-//Ä¬ÈÏ²»¿ªÆô×é¼şÉ¨Ãè
-//Ê¹ÓÃ×¢½â·½Ê½¿ªÆô×Ô¶¯É¨Ãè¡£Èç¹ûÃ»ÓĞÆäËûÅäÖÃµÄ»°£¬ @ComponentScanÄ¬ÈÏ»áÉ¨ÃèÓëÅäÖÃÀàÏàÍ¬µÄ°ü
+//é»˜è®¤ä¸å¼€å¯ç»„ä»¶æ‰«æ
+//ä½¿ç”¨æ³¨è§£æ–¹å¼å¼€å¯è‡ªåŠ¨æ‰«æã€‚å¦‚æœæ²¡æœ‰å…¶ä»–é…ç½®çš„è¯ï¼Œ @ComponentScané»˜è®¤ä¼šæ‰«æä¸é…ç½®ç±»ç›¸åŒçš„åŒ…
 @Configuration
 @ComponentScan
 public class CDPlayerConfig {

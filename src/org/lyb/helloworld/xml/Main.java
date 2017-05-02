@@ -5,21 +5,21 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class Main {
 	public static void main(String[] args){
-		/*´«Í³Ğ´·¨
-		//´´½¨¶ÔÏó
+		/*ä¼ ç»Ÿå†™æ³•
+		//åˆ›å»ºå¯¹è±¡
 		HelloWorld hello=new HelloWorld();
-		//ÎªÊôĞÔ¸³Öµ
+		//ä¸ºå±æ€§èµ‹å€¼
 		hello.setName("liyubin");*/
 		
 //		BeanFactory factory=new ClassPathXmlApplicationContext("applicationContext.xml");
 //		HelloWorld hello=(HelloWorld)factory.getBean("HelloWorld");
-		//´´½¨IOCÈİÆ÷
+		//åˆ›å»ºIOCå®¹å™¨
 		ApplicationContext ctx=new ClassPathXmlApplicationContext("applicationContext.xml");
 		
-		//ÀûÓÃid¶¨Î»µ½IOCÈİÆ÷µÄbean
-		HelloWorld hello=(HelloWorld)ctx.getBean("HelloWorld"); //getBean·½·¨ÊÇÔÚÆä¸¸½Ó¿ÚBeanFactoryÖĞ¶¨ÒåµÄ£¬ÓĞ¶àÖÖÖØÔØĞÎÊ½
+		//åˆ©ç”¨idå®šä½åˆ°IOCå®¹å™¨çš„bean
+		HelloWorld hello=(HelloWorld)ctx.getBean("HelloWorld"); //getBeanæ–¹æ³•æ˜¯åœ¨å…¶çˆ¶æ¥å£BeanFactoryä¸­å®šä¹‰çš„ï¼Œæœ‰å¤šç§é‡è½½å½¢å¼
 		hello.getHello();
-		//ÀûÓÃÀàĞÍ·µ»ØIOCÈİÆ÷ÖĞµÄbean£¬µ«ÒªÇóIOCÈİÆ÷ÖĞ±ØĞëÖ»ÄÜÓĞÒ»¸ö¸ÃÀàĞÍµÄbean
+		//åˆ©ç”¨ç±»å‹è¿”å›IOCå®¹å™¨ä¸­çš„beanï¼Œä½†è¦æ±‚IOCå®¹å™¨ä¸­å¿…é¡»åªèƒ½æœ‰ä¸€ä¸ªè¯¥ç±»å‹çš„bean
 		HelloWorld hello2=ctx.getBean(HelloWorld.class);
 		System.out.println(hello2);
 		hello2.getHello();

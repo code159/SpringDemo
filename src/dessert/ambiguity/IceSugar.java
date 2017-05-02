@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
-//Java²»ÔÊĞíÍ¬Ò»Î»ÖÃ³öÏÖÏàÍ¬µÄ×¢½â
+//Javaä¸å…è®¸åŒä¸€ä½ç½®å‡ºç°ç›¸åŒçš„æ³¨è§£
 //@Qualifier("ice")
 //@Qualifier("sugar")
-//Ê¹ÓÃ×Ô¶¨ÒåÏŞ¶¨×¢½â£¬½â¾öÃæÏòÌØĞÔµÄÏŞ¶¨ÃûÆçÒåÎÊÌâ
+//ä½¿ç”¨è‡ªå®šä¹‰é™å®šæ³¨è§£ï¼Œè§£å†³é¢å‘ç‰¹æ€§çš„é™å®šåæ­§ä¹‰é—®é¢˜
 @Ice
 @Sugar
 public class IceSugar implements Dessert{

@@ -8,7 +8,7 @@ import soundsystem.javaconfig.SgtPeppers;
 
 @Configuration
 public class CDConfig {
-	//ÉùÃ÷Bean
+	//å£°æ˜Bean
 	@Bean(name="cd1")
 	public CompactDisc sgtPeppers(){
 		return new SgtPeppers();

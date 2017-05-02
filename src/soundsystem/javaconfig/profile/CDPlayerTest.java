@@ -25,8 +25,8 @@ public class CDPlayerTest {
 		assertNotNull(cd);
 	}
 	
-	//由于已经指定Profile，在本例中不存在二义性，不需要指定bean
-	//由于有两个候选bean:cdPlayer1、cdPlayer2，需要用@Resource指定
+	//鐢变簬宸茬粡鎸囧畾Profile锛屽湪鏈緥涓笉瀛樺湪浜屼箟鎬э紝涓嶉渶瑕佹寚瀹歜ean
+	//鐢变簬鏈変袱涓�欓�塨ean:cdPlayer1銆乧dPlayer2锛岄渶瑕佺敤@Resource鎸囧畾
 	//@Resource(name="cdPlayer2")
 	@Autowired
 	private CDPlayer player;

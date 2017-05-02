@@ -9,15 +9,15 @@ import soundsystem.javaconfig.CompactDisc;
 
 @Configuration
 public class CDPlayerConfig {
-	//装配
-	//构造器注入
+	//瑁呴厤
+	//鏋勯�犲櫒娉ㄥ叆
 	@Bean
 	@Profile("dev")
 	public CDPlayer cdPlayer(CompactDisc cd){
 		System.out.println("dev cdPlayer");
 		return new CDPlayer(cd);
 	}
-	//setter注入
+	//setter娉ㄥ叆
 	@Bean
 	@Profile("prod")
 	public CDPlayer cdPlayer2(CompactDisc cd){

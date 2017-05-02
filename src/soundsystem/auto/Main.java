@@ -20,7 +20,7 @@ public class Main {
         CDPlayer CDPlayer = (CDPlayer)beanFactory.getBean("CDPlayer");
         CDPlayer.play();
         
-        //Õâ¸öMain²»ÄÜÊÇ×Ô¼ºnew³öÀ´µÄ£¬±ØĞëÊÇ´ÓSpringÈİÆ÷ÖĞÈ¡³öÀ´µÄ¡£
+        //è¿™ä¸ªMainä¸èƒ½æ˜¯è‡ªå·±newå‡ºæ¥çš„ï¼Œå¿…é¡»æ˜¯ä»Springå®¹å™¨ä¸­å–å‡ºæ¥çš„ã€‚
         Main main = (Main)beanFactory.getBean("main");
         main.cdp.play();;
 	}

@@ -8,6 +8,9 @@
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
 		<config>src/applicationContext.xml</config>
+		<config>src/sleep/aop/aopSleep.xml</config>
+		<config>src/sleep/aop/autoProxyAopSleep.xml</config>
+		<config>src/sleep/aop/annotationAopSleep.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

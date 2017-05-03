@@ -3,6 +3,7 @@ package dao.datasource;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
+import java.sql.Savepoint;
 import java.sql.Statement;
 
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -30,8 +31,14 @@ public class DriverManagerDataSourceDemo {
 			Statement stmt=conn.createStatement();
 			
 			int rows=stmt.executeUpdate("insert into t1 values(1,'li')");
-			rows=stmt.executeUpdate("update t1 set name='liyubin' where id=1");
+			Savepoint sp;
+			if(dbmd.supportsSavepoints()){
+				sp=conn.setSavepoint("sp1");
+				rows=stmt.executeUpdate("update t1 set name='liyubin' where id=1");
+				conn.rollback(sp);
+			}
 			conn.commit();
+			System.out.println(rows+"行");
 		} catch (SQLException e) {
 			
 		}

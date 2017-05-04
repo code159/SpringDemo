@@ -1,4 +1,4 @@
-package dao.datasource;
+package dao.jdbctemplate;
 
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;

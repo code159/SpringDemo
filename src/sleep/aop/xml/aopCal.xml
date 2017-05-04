@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
+
+	<!-- 推荐的aop xml写法 -->
+	
+	<context:component-scan base-package="sleep.aop.xml,aop.principle"></context:component-scan>
+	
+	<!-- 配置AOP -->
+	<aop:config>
+		<!-- 配置切点表达式 -->
+		<aop:pointcut expression="execution(* aop.principle.ArithmeticCalculator.*(int,int))" id="cal"/>
+		<!-- 配置切面及通知 -->
+		<aop:aspect ref="calHelper" order="2">
+			<aop:before method="beforeCal" pointcut-ref="cal"/>
+			<aop:after method="afterCal" pointcut-ref="cal"/>
+			<aop:after-returning method="afterReturingCal" pointcut-ref="cal" returning="result"/>
+			<aop:after-throwing method="afterThrowingCal" pointcut-ref="cal" throwing="ex"/>
+			<!-- <aop:around method="aroundMethod" pointcut-ref="cal"/> -->
+		</aop:aspect>
+		<aop:aspect ref="validation" order="1">
+			<aop:before method="beforeCal" pointcut-ref="cal"/>
+		</aop:aspect>
+	</aop:config>
+	
+</beans>

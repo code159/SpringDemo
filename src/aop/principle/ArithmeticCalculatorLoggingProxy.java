@@ -6,8 +6,10 @@ import java.lang.reflect.Proxy;
 import java.util.Arrays;
 
 /**
- * 动态代理
- * AOP的原理
+ * JDK动态代理：依赖接口实现，
+ * 优点：可以突破静态代理的限制，一个动态代理类为多个接口服务
+ * 缺点：无法用于未实现接口的目标类
+ * AOP的原理：JDK动态代理和cglib动态代理
  */
 public class ArithmeticCalculatorLoggingProxy {
 	//要代理的对象
@@ -23,7 +25,9 @@ public class ArithmeticCalculatorLoggingProxy {
 		//代理对象由哪一个类加载器负责加载
 		ClassLoader loader=target.getClass().getClassLoader();
 		//代理对象的类型，即告知其中有哪些方法
-		Class[] interfaces=new Class[]{ArithmeticCalculator.class};
+		//Class[] interfaces=new Class[]{ArithmeticCalculator.class};
+		//更简洁通用的写法
+		Class[] interfaces=target.getClass().getInterfaces();
 		//当调用代理对象其中的方法时，该执行的代码
 		InvocationHandler h=new InvocationHandler(){
 			/**

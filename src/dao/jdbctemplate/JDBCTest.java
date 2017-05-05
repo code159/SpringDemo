@@ -4,7 +4,9 @@ import static org.junit.Assert.*;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
@@ -14,13 +16,18 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 public class JDBCTest {
 	private ApplicationContext ctx=null;
 	private JdbcTemplate jdbcTemplate=null;
+	private NamedParameterJdbcTemplate namedParameterJdbcTemplate=null;
 	{
 		ctx=new ClassPathXmlApplicationContext("dao/jdbctemplate/datasource.xml");
+		//通过参数索引映射（sql中的?与对象属性）
 		jdbcTemplate=(JdbcTemplate) ctx.getBean("jdbcTemplate");
+		//通过参数名映射（sql中的:与对象属性）
+		namedParameterJdbcTemplate=(NamedParameterJdbcTemplate) ctx.getBean("namedParameterJdbcTemplate");
 	}
 
 	@Test
@@ -31,19 +38,19 @@ public class JDBCTest {
 	
 	@Test
 	public void testInsert(){
-		String sql="insert into t values(?,?)";
-		jdbcTemplate.update(sql, 2, "yubin");
+		String sql="insert into t values(?,?,?)";
+		jdbcTemplate.update(sql, 2, "yubin","li");
 	}
 	
 	@Test
 	public void testBatchInsert(){
-		String sql="insert into t values(?,?)";
+		String sql="insert into t values(?,?,?)";
 		List<Object[]> batchArgs=new ArrayList<>();
-		batchArgs.add(new Object[]{1,"a"});
-		batchArgs.add(new Object[]{2,"b"});
-		batchArgs.add(new Object[]{3,"c"});
-		batchArgs.add(new Object[]{4,"d"});
-		batchArgs.add(new Object[]{5,"e"});
+		batchArgs.add(new Object[]{1,"a","a"});
+		batchArgs.add(new Object[]{2,"b","b"});
+		batchArgs.add(new Object[]{3,"c","c"});
+		batchArgs.add(new Object[]{4,"d","d"});
+		batchArgs.add(new Object[]{5,"e","e"});
 		jdbcTemplate.batchUpdate(sql, batchArgs);
 	}
 	
@@ -56,7 +63,7 @@ public class JDBCTest {
 	public void testQueryById(){
 		String sql="select id,name,last_name from t where id=?";
 		RowMapper<TDao> rowMapper=new BeanPropertyRowMapper<>(TDao.class);
-		TDao tdao=jdbcTemplate.queryForObject(sql, rowMapper, 10);
+		TDao tdao=jdbcTemplate.queryForObject(sql, rowMapper, 1);
 		System.out.println(tdao);
 	}
 	
@@ -91,6 +98,14 @@ public class JDBCTest {
 	}
 	
 
-
+	@Test
+	public void testNamedUpdate(){
+		String sql="insert into t(id,last_name,name) values (:id,:last_name,:name)";
+		Map<String,Object> paramMap=new HashMap<>();
+		paramMap.put("id", 10);
+		paramMap.put("name", "tom lea");
+		paramMap.put("last_name", "lea");
+		namedParameterJdbcTemplate.update(sql, paramMap);
+	}
 
 }

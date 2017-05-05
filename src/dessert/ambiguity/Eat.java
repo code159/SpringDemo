@@ -1,6 +1,7 @@
 package dessert.ambiguity;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -8,7 +9,7 @@ public class Eat {
 	private Dessert dessert;
 	
 	@Autowired
-	public Eat(Dessert d){
+	public Eat(@Qualifier("very sweet") Dessert d){
 		this.dessert=d;
 	}
 	

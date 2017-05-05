@@ -87,6 +87,7 @@
 			<artifactId>aspectjweaver</artifactId>
 			<version>1.8.10</version>
 		</dependency>
+
 		<!-- DAO事务支持 -->
 		<!-- 导入Mysql数据库链接jar包 -->
 		<dependency>
@@ -106,6 +107,16 @@
 			<artifactId>c3p0</artifactId>
 			<version>0.9.1.2</version>
 		</dependency>
+
+		<!-- web -->
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-web -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+			<version>${org.springframework.version}</version>
+		</dependency>
+
+
 	</dependencies>
 
 

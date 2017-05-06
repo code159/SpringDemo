@@ -1,11 +1,16 @@
 package dao.jdbctemplate;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 
+@Component
 public class EmpServiceImpl implements EmpService {
+	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	
 	private final String INSERT_DEPT="insert into dept(dept_id,dname,location) values(?,?,?)";
 	private final String INSERT_EMP="insert into emp(emp_id,ename,sex,dept_id) values(?,?,?,?)";
 	private final String SELECT_DEPT="select dept_id,dname,location from dept where dept_id=?";
@@ -15,9 +20,10 @@ public class EmpServiceImpl implements EmpService {
 	private RowMapper<DeptDao> deptRowMapper=new BeanPropertyRowMapper<>(DeptDao.class);
 	private RowMapper<EmpDao> empRowMapper=new BeanPropertyRowMapper<>(EmpDao.class);
 	
-	public EmpServiceImpl(JdbcTemplate jdbcTemplate){
-		this.jdbcTemplate=jdbcTemplate;
-	}
+	
+//	public EmpServiceImpl(JdbcTemplate jdbcTemplate){
+//		this.jdbcTemplate=jdbcTemplate;
+//	}
 
 	@Override
 	public void addDept(DeptDao dd) {

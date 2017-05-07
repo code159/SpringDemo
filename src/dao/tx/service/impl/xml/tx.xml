@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+	
+	<!-- 导入资源文件 -->
+	<context:property-placeholder location="dao/jdbctemplate/db.properties" file-encoding="utf-8"/>
+	
+	<!-- 配置c3p0数据源 -->
+	<bean id="c3p0" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close" 
+		p:driverClass="${jdbc.driverClass}"
+		p:jdbcUrl="${jdbc.jdbcUrl}"
+		p:user="${jdbc.username}"
+		p:password="${jdbc.password}"
+		p:initialPoolSize="${jdbc.initPoolSize}"
+		p:maxPoolSize="${jdbc.maxPoolSize}">
+	</bean>
+	
+	<!-- 配置spring的JdbcTemplate -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"
+		p:dataSource-ref="c3p0">
+	</bean>
+	
+	<!-- 配置spring的NamedJdbcTemplate -->
+	<bean id="namedParameterJdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate"
+		c:dataSource-ref="c3p0">
+	</bean>
+	
+	<bean id="bookShopDao" class="dao.tx.service.impl.xml.BookShopDaoImpl" p:jt-ref="jdbcTemplate"></bean>
+	<bean id="purchaseService" class="dao.tx.service.impl.xml.PurchaseServiceImpl" p:bsd-ref="bookShopDao"></bean>
+	<bean id="multiPurchaseService" class="dao.tx.service.impl.xml.MultiPurchaseServiceImpl" p:ps-ref="purchaseService"></bean>
+	
+	<!-- 1.配置事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+		p:dataSource-ref="c3p0">
+	</bean>
+	
+	<!-- 2.配置事务通知 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="find*" read-only="true"/>
+			<tx:method name="get*" read-only="true"/>
+			<tx:method name="*urchase" propagation="REQUIRED"/>			
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- 3.配置事物切点，与事务通知关联为事物切面 -->
+	<aop:config>
+		<aop:pointcut expression="execution(* dao.tx.service.xml.*.*(..))" id="txPointCut"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointCut"/>
+	</aop:config>
+</beans>
